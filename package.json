@@ -1,12 +1,12 @@
 {
-  "name": "project-starter",
+  "name": "@ssalka/ssalka.io",
   "version": "0.1.0",
-  "description": "Project Starter",
+  "description": "Personal Website",
   "author": "Steven Salka <steven@ssalka.io>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssalka/project-starter"
+    "url": "https://github.com/ssalka/@ssalka/ssalka.io"
   },
   "engines": {
     "node": "^8.9.0",
