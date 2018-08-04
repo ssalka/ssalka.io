@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Network } from './components';
+import App from './App';
 
 render(
-  <Network />,
+  <App />,
   document.getElementById('root')
 );
