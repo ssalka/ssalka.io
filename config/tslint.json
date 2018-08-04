@@ -4,6 +4,9 @@
     "tslint-eslint-rules",
     "tslint-react"
   ],
+  "linterOptions": {
+    "exclude": ["../src/**/*.json"]
+  },
   "rules": {
     "array-type": [true, "array"],
     "arrow-parens": false,
@@ -28,6 +31,7 @@
     "no-angle-bracket-type-assertion": true,
     "no-console": false,
     "no-duplicate-case": true,
+    "no-reference": false,
     "no-sparse-arrays": true,
     "no-unused-expression": true,
     "object-curly-spacing": [true, "always"],

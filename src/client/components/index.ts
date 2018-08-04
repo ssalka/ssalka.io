@@ -1,5 +1,2 @@
-import Counter from './Counter';
-
-export {
-  Counter
-};
+export { default as Counter } from './Counter';
+export { default as Network } from './Network';

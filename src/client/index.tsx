@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Counter } from './components';
+import { Network } from './components';
 
 render(
-  <Counter />,
+  <Network />,
   document.getElementById('root')
 );
