@@ -20,6 +20,7 @@
     "test": "NODE_ENV=test NODE_PATH=. jest -c config/jest.json --noStackTrace"
   },
   "dependencies": {
+    "@material-ui/core": "^1.4.3",
     "bind-decorator": "^1.0.11",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
