@@ -1,4 +1,5 @@
 import device from 'current-device';
+import _ from 'lodash/fp';
 import React, { Component } from 'react';
 
 import { CssBaseline } from '@material-ui/core';
@@ -31,9 +32,7 @@ class App extends Component<WithStyles, IAppState> {
   profilePictureURL = getResourceURL('profile.jpg');
 
   getClassName = (className: string): string => {
-    const orientation = this.state.orientation.charAt(0).toUpperCase() + this.state.orientation.slice(1);
-
-    return this.props.classes[className + orientation];
+    return this.props.classes[className + _.upperFirst(this.state.orientation)];
   }
 
   componentDidMount() {
@@ -102,7 +101,7 @@ const styles: StyleRulesCallback = theme => {
     },
     '& p': {
       fontSize: `${device.mobile() ? 0.875 : 1}em`,
-      maxWidth: Math.min(475, (2 / 3) * window.innerWidth)
+      maxWidth: _.clamp(320, 475)((2 / 3) * window.innerWidth)
     }
   };
 
