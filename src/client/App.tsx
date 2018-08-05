@@ -1,10 +1,10 @@
 import device from 'current-device';
-import React, { Component, CSSProperties } from 'react';
+import React, { Component } from 'react';
 
-import { CssBaseline, Paper, Typography } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider, StyleRulesCallback, withStyles, WithStyles } from '@material-ui/core/styles';
 
-import { Network } from './components';
+import { About, Network } from './components';
 import { getResourceURL } from './util/s3';
 
 const enum DeviceOrientation {
@@ -21,7 +21,11 @@ class App extends Component<WithStyles, IAppState> {
     orientation: device.orientation
   };
 
-  theme = createMuiTheme();
+  theme = createMuiTheme({
+    palette: {
+      type: 'dark'
+    }
+  });
 
   profilePictureURL = getResourceURL('profile.jpg');
 
@@ -47,14 +51,12 @@ class App extends Component<WithStyles, IAppState> {
         <CssBaseline>
           <div className={this.getClassName('grid')}>
             <Network className={classes.background} />
-
-            <Paper className={this.getClassName('avatar')} elevation={7} square={false}>
-              <img src={this.profilePictureURL} />
-            </Paper>
-
-            <Typography className={this.getClassName('name')} variant={device.landscape() ? 'display3' : 'display2'}>
-              Steven Salka
-            </Typography>
+            <About
+              classes={{
+                avatar: this.getClassName('avatar'),
+                about: this.getClassName('about')
+              }}
+            />
           </div>
         </CssBaseline>
       </MuiThemeProvider>
@@ -84,23 +86,31 @@ const styles: StyleRulesCallback = theme => {
     }
   };
 
-  const name: CSSProperties = {
-    color: 'white',
-    fontWeight: 500,
-    textTransform: 'uppercase',
-    margin: 30
+  // TODO: add sass-loader
+  const about: any = {
+    zIndex: 1,
+    '& h1': {
+      fontWeight: 500,
+      textTransform: 'uppercase'
+    },
+    '& h2': {
+      marginBottom: 20
+    },
+    '& a': {
+      color: amber[400]
+    }
   };
 
   return {
     background: {
       gridRow: '1 / end',
       gridColumn: '1 / end',
-      zIndex: -1
+      zIndex: 0
     },
     gridLandscape: {
       ...grid,
       gridTemplateRows: '1fr 2fr 1fr',
-      gridTemplateColumns: '1fr 2fr 5fr',
+      gridTemplateColumns: '1fr minmax(auto, 300px) 5fr',
     },
     gridPortrait: {
       ...grid,
@@ -114,13 +124,15 @@ const styles: StyleRulesCallback = theme => {
       alignSelf: 'end',
       justifySelf: 'center'
     },
-    nameLandscape: {
-      ...name,
+    aboutLandscape: {
+      ...about,
       gridRow: 2,
-      gridColumn: 3
+      gridColumn: 3,
+      margin: '15px 30px'
     },
-    namePortrait: {
-      ...name,
+    aboutPortrait: {
+      ...about,
+      margin: 20,
       gridRow: 3,
       gridColumn: 1,
       textAlign: 'center'
