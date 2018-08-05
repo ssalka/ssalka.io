@@ -1,5 +1,4 @@
-import device from 'current-device';
-import React, { SFC } from 'react';
+import React, { HTMLProps, SFC } from 'react';
 import Particles from 'react-particles-js';
 
 import config from './config.json';
@@ -9,15 +8,7 @@ const style = {
 };
 
 function getParticleCount(): number {
-  switch (device.type) {
-    case 'tablet':
-      return 20;
-    case 'mobile':
-      return 30;
-    case 'desktop':
-    default:
-      return 70;
-  }
+  return Math.max(1000, window.innerWidth, window.innerHeight) / 50;
 }
 
 const params = {
@@ -31,12 +22,11 @@ const params = {
   }
 };
 
-const Network: SFC = () => (
+const Network: SFC<Pick<HTMLProps<HTMLDivElement>, 'className'>> = props => (
   <Particles
-    height="100vh"
-    width="100vw"
     params={params}
     style={style}
+    {...props}
   />
 );
 
