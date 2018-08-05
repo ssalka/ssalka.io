@@ -53,7 +53,7 @@ class About extends Component<WithStyles, IAboutState> {
         {about && (
           <div className={classes.about}>
             <Typography
-              variant={device.landscape() ? 'display3' : 'display2'}
+              variant={device.landscape() && !device.mobile() ? 'display3' : 'display2'}
               gutterBottom={device.portrait()}
             >
               {about.header}
@@ -66,6 +66,10 @@ class About extends Component<WithStyles, IAboutState> {
                 </a>
               )}
             </Typography>
+
+            {about.blurb.map((line, i) => (
+              <Typography key={i}>{line}</Typography>
+            ))}
           </div>
         )}
         </Fragment>

@@ -2,6 +2,7 @@ import device from 'current-device';
 import React, { Component } from 'react';
 
 import { CssBaseline } from '@material-ui/core';
+import { amber } from '@material-ui/core/colors';
 import { createMuiTheme, MuiThemeProvider, StyleRulesCallback, withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { About, Network } from './components';
@@ -98,6 +99,10 @@ const styles: StyleRulesCallback = theme => {
     },
     '& a': {
       color: amber[400]
+    },
+    '& p': {
+      fontSize: `${device.mobile() ? 0.875 : 1}em`,
+      maxWidth: Math.min(475, (2 / 3) * window.innerWidth)
     }
   };
 
@@ -110,11 +115,11 @@ const styles: StyleRulesCallback = theme => {
     gridLandscape: {
       ...grid,
       gridTemplateRows: '1fr 2fr 1fr',
-      gridTemplateColumns: '1fr minmax(auto, 300px) 5fr',
+      gridTemplateColumns: '1fr auto 5fr',
     },
     gridPortrait: {
       ...grid,
-      gridTemplateRows: '1fr minmax(auto, 300px) 2fr',
+      gridTemplateRows: '1fr auto 2fr',
       gridTemplateColumns: '1fr'
     },
     avatarLandscape: avatar,
@@ -128,14 +133,22 @@ const styles: StyleRulesCallback = theme => {
       ...about,
       gridRow: 2,
       gridColumn: 3,
-      margin: '15px 30px'
+      margin: '15px 30px',
+      '& p': {
+        ...about['& p'],
+        marginTop: 15
+      }
     },
     aboutPortrait: {
       ...about,
       margin: 20,
       gridRow: 3,
       gridColumn: 1,
-      textAlign: 'center'
+      textAlign: 'center',
+      '& p': {
+        ...about['& p'],
+        margin: '0 auto 15px'
+      }
     }
   };
 };
