@@ -22,11 +22,19 @@ const config = {
     rules: [{
       test: /\.tsx?$/,
       include: CLIENT,
-      loader: 'ts-loader',
+      use: 'ts-loader',
       options: {
         configFile: path.resolve('./config/tsconfig.client.json'),
         transpileOnly: true
       }
+    }, {
+      test: /\.scss$/,
+      include: CLIENT,
+      use: [
+        'style-loader',
+        'css-loader',
+        'fast-sass-loader'
+      ]
     }]
   },
   resolve: {
