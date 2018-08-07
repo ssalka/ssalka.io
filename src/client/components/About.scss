@@ -1,0 +1,102 @@
+$amber-400: #FFCA28;
+
+.about {
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  z-index: 1;
+  * {
+    z-index: 1;
+
+  }
+
+  .avatar {
+    height: 30vmax;
+    width: 30vmax;
+    max-height: 300px;
+    max-width: 300px;
+    grid-column: 2;
+    grid-row: 2;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    margin: 15px 30px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .content {
+    grid-row: 3;
+  }
+
+  h1 {
+    position: relative;
+    margin-bottom: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: $amber-400 !important;
+  }
+
+  p {
+    font-size: 1em;
+    min-width: 320px;
+    width: 92vw;
+    max-width: 400px;
+  }
+
+  .mobile & p {
+    font-size: 0.875em;
+    max-width: 350px;
+  }
+
+  .tablet & p {
+    max-width: 400px;
+  }
+
+  .portrait & {
+    grid-template-rows: auto 3fr;
+    grid-template-columns: 1fr;
+    text-align: center;
+
+    .avatar {
+      grid-column: 1;
+      align-self: end;
+      justify-self: center;
+    }
+
+    p {
+      margin: 0 auto 10px;
+    }
+  }
+
+  .landscape & {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1.5fr;
+
+    .avatar {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .content {
+      grid-column: 2;
+      grid-row: 1;
+      padding-top: 20px;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 import React, { HTMLProps, SFC } from 'react';
 import Particles from 'react-particles-js';
 
+import { indigo } from '@material-ui/core/colors';
+
 import config from './config.json';
 
 const style = {
-  backgroundColor: '#124'
+  background: `linear-gradient(to bottom right, #124, ${indigo[900]}, #06245e)`
 };
 
 function getParticleCount(): number {

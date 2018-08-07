@@ -1,10 +1,11 @@
 import device from 'current-device';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { Fade, Paper, Typography } from '@material-ui/core';
-import { WithStyles } from '@material-ui/core/styles';
 
 import { getResourceURL } from 'src/client/util/s3';
+
+import './About.scss';
 
 interface IAboutState {
   loading: boolean;
@@ -19,7 +20,7 @@ interface IAboutState {
   };
 }
 
-class About extends Component<WithStyles, IAboutState> {
+class About extends Component<{}, IAboutState> {
   state: IAboutState = {
     loading: true
   };
@@ -39,40 +40,38 @@ class About extends Component<WithStyles, IAboutState> {
   }
 
   render() {
-    const { classes } = this.props;
     const { loading, error, about } = this.state;
 
     // TODO: render error state
     return (
       <Fade in={!loading && !error}>
-        <Fragment>
-        <Paper className={classes.avatar} elevation={7} square={false}>
-          <img src={this.profilePictureURL} />
-        </Paper>
+        <div className="about">
+          <Paper className="avatar" elevation={7} square={false}>
+            <img src={this.profilePictureURL} />
+          </Paper>
 
-        {about && (
-          <div className={classes.about}>
-            <Typography
-              variant={device.landscape() && !device.mobile() ? 'display3' : 'display2'}
-              gutterBottom={device.portrait()}
-            >
-              {about.header}
-            </Typography>
+          {about && (
+            <div className="content">
+              <Typography
+                variant={device.landscape() && !device.mobile() ? 'display3' : 'display2'}
+              >
+                {about.header}
+              </Typography>
 
-            <Typography variant="title">
-              {about.profession.title} @ {(
-                <a href={about.profession.company.website} target="_blank">
-                  {about.profession.company.name}
-                </a>
-              )}
-            </Typography>
+              <Typography variant="title">
+                {about.profession.title} @ {(
+                  <a href={about.profession.company.website} target="_blank">
+                    {about.profession.company.name}
+                  </a>
+                )}
+              </Typography>
 
-            {about.blurb.map((line, i) => (
-              <Typography key={i}>{line}</Typography>
-            ))}
-          </div>
-        )}
-        </Fragment>
+              {about.blurb.map((line, i) => (
+                <Typography key={i}>{line}</Typography>
+              ))}
+            </div>
+          )}
+        </div>
       </Fade>
     );
   }

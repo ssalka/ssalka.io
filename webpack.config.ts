@@ -22,7 +22,7 @@ const config = {
     rules: [{
       test: /\.tsx?$/,
       include: CLIENT,
-      use: 'ts-loader',
+      loader: 'ts-loader',
       options: {
         configFile: path.resolve('./config/tsconfig.client.json'),
         transpileOnly: true
