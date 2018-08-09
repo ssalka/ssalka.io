@@ -41,7 +41,7 @@ class App extends Component<{}, IAppState> {
     return (
       <MuiThemeProvider theme={this.theme}>
         <CssBaseline>
-          <div className="app">
+          <div id="app">
             <Network className="background" />
             <About />
           </div>

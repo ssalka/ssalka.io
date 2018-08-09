@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.4.3",
+    "@material-ui/icons": "^2.0.1",
     "bind-decorator": "^1.0.11",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -30,6 +31,7 @@
     "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-icons": "^3.0.5",
     "react-particles-js": "^2.3.0",
     "ts-node": "^7.0.0"
   },
