@@ -6,13 +6,18 @@ html, body {
   height: 100vh;
   display: grid;
 
+  .background, main {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
   .background {
     max-height: 100vh;
     z-index: 0;
   }
 
-  .background, #about {
-    grid-row: 1;
-    grid-column: 1;
+  main {
+    align-self: center;
+    justify-self: center;
   }
 }

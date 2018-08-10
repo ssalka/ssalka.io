@@ -32,7 +32,7 @@ class App extends Component<{}, IAppState> {
   componentDidMount() {
     device.onChangeOrientation((orientation: DeviceOrientation) => {
       if (orientation !== this.state.orientation) {
-        this.setState({ orientation });
+        requestAnimationFrame(() => this.setState({ orientation }));
       }
     });
   }

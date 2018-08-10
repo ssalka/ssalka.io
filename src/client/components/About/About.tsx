@@ -1,7 +1,8 @@
 import device from 'current-device';
 import React, { Component, Fragment } from 'react';
 
-import { Button, Fade, IconButton, Paper, Typography } from '@material-ui/core';
+import { Button, Fade, IconButton, Paper } from '@material-ui/core';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import EmailIcon from '@material-ui/icons/EmailOutlined';
 import {
   FaGithub as GitHubIcon,
@@ -58,21 +59,27 @@ class About extends Component<{}, IAboutState> {
     }
   }
 
+  static getHeaderDisplayVariant(): 1 | 2 | 3 {
+    if (device.landscape() && !device.mobile()) return 3;
+    else if (device.mobile() && window.innerWidth < 600) return 1;
+    else return 2;
+  }
+
   render() {
     const { loading, error, about } = this.state;
 
     // TODO: render error state
     return (
       <Fade in={!loading && !error}>
-        <div id="about">
+        <main>
           <Paper id="avatar" elevation={7} square={false}>
             <img src={this.profilePictureURL} />
           </Paper>
 
           {about && (
             <Fragment>
-              <div id="content">
-                <Typography variant={device.landscape() && !device.mobile() ? 'display3' : 'display2'}>
+              <section id="content">
+                <Typography variant={`display${About.getHeaderDisplayVariant()}` as TypographyProps['variant']}>
                   {about.header}
                 </Typography>
 
@@ -87,14 +94,13 @@ class About extends Component<{}, IAboutState> {
                 {about.blurb.map((line, i) => (
                   <Typography key={i}>{line}</Typography>
                 ))}
+              </section>
 
-              </div>
-
-              <Button id="resume" href={this.resumeURL} target="_blank">
+              <Button id="resume" href={this.resumeURL} target="_blank" size={device.mobile() ? 'medium' : 'large'}>
                 Resumé
               </Button>
 
-              <div id="links">
+              <section id="links">
                 {about.links.map(({ name, url }) => (
                   <a href={url} key={name} target="_blank">
                     <IconButton>
@@ -102,10 +108,10 @@ class About extends Component<{}, IAboutState> {
                     </IconButton>
                   </a>
                 ))}
-              </div>
+              </section>
             </Fragment>
           )}
-        </div>
+        </main>
       </Fade>
     );
   }
