@@ -1,3 +1,4 @@
+import _ from 'lodash/fp';
 import React, { HTMLProps, SFC } from 'react';
 import Particles from 'react-particles-js';
 
@@ -10,19 +11,16 @@ const style = {
 };
 
 function getParticleCount(): number {
-  return Math.max(1000, window.innerWidth, window.innerHeight) / 50;
+  return window.innerWidth * window.innerHeight / 25000;
 }
 
-const params = {
-  ...config,
+const params = _.merge(config, {
   particles: {
-    ...config.particles,
     number: {
-      ...config.particles.number,
       value: getParticleCount()
     }
   }
-};
+});
 
 const Network: SFC<Pick<HTMLProps<HTMLDivElement>, 'className'>> = props => (
   <Particles
