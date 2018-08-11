@@ -8,9 +8,13 @@
   "rootDir": "../",
   "moduleFileExtensions": [
     "js",
+    "json",
     "ts",
     "tsx"
   ],
+  "moduleNameMapper": {
+    "\\.scss$": "<rootDir>/node_modules/jest-css-modules"
+  },
   "moduleDirectories": [
     "node_modules",
     "."
