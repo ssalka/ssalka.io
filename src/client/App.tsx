@@ -1,6 +1,6 @@
 import device from 'current-device';
 import _ from 'lodash/fp';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -41,10 +41,10 @@ class App extends Component<{}, IAppState> {
     return (
       <MuiThemeProvider theme={this.theme}>
         <CssBaseline>
-          <div id="app">
+          <Fragment>
             <Network className="background" />
             <About />
-          </div>
+          </Fragment>
         </CssBaseline>
       </MuiThemeProvider>
     );
