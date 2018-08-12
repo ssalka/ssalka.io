@@ -19,7 +19,7 @@
     "node_modules",
     "."
   ],
-  "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+  "setupFiles": ["<rootDir>/test/setup.js", "jest-canvas-mock"],
   "testPathIgnorePatterns": [
     "/node_modules/"
   ],

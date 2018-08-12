@@ -9,12 +9,12 @@ import { About, Network } from './components';
 
 import './App.scss';
 
-const enum DeviceOrientation {
+export const enum DeviceOrientation {
   Landscape = 'landscape',
   Portrait = 'portrait'
 }
 
-interface IAppState {
+export interface IAppState {
   orientation: DeviceOrientation;
 }
 
@@ -30,11 +30,13 @@ class App extends Component<{}, IAppState> {
   });
 
   componentDidMount() {
-    device.onChangeOrientation((orientation: DeviceOrientation) => {
-      if (orientation !== this.state.orientation) {
-        requestAnimationFrame(() => this.setState({ orientation }));
-      }
-    });
+    device.onChangeOrientation(this.handleOrientationChange);
+  }
+
+  handleOrientationChange(orientation: DeviceOrientation) {
+    if (orientation !== this.state.orientation) {
+      requestAnimationFrame(() =>  this.setState({ orientation }));
+    }
   }
 
   render() {
