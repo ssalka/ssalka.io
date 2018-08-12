@@ -1,4 +1,5 @@
 import device from 'current-device';
+import _ from 'lodash/fp';
 import React, { Component, Fragment } from 'react';
 
 import { Button, Fade, IconButton, Paper } from '@material-ui/core';
@@ -37,9 +38,11 @@ class About extends Component<{}, IAboutState> {
     loading: true
   };
 
-  profilePictureURL = getResourceURL('profile.jpg');
-
-  resumeURL = getResourceURL('ssalkaResume.pdf');
+  urls = _.mapValues(getResourceURL, {
+    profilePicture: 'profile.jpg',
+    resume: 'ssalkaResume.pdf',
+    content: 'about.json'
+  });
 
   iconsByName = {
     github: <GitHubIcon />,
@@ -73,7 +76,7 @@ class About extends Component<{}, IAboutState> {
       <Fade in={!loading && !error}>
         <main>
           <Paper id="avatar" elevation={7} square={false}>
-            <img src={this.profilePictureURL} />
+            <img src={this.urls.profilePicture} />
           </Paper>
 
           {about && (
@@ -96,7 +99,7 @@ class About extends Component<{}, IAboutState> {
                 ))}
               </section>
 
-              <Button id="resume" href={this.resumeURL} target="_blank" size={device.mobile() ? 'medium' : 'large'}>
+              <Button id="resume" href={this.urls.resume} target="_blank" size={device.mobile() ? 'medium' : 'large'}>
                 Resumé
               </Button>
 

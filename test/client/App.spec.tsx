@@ -4,24 +4,24 @@ import App, { DeviceOrientation, IAppState } from 'src/client/App';
 import { About, Network } from 'src/client/components';
 
 describe('App', () => {
-  let wrapper: ShallowWrapper<{}, IAppState>;
+  let app: ShallowWrapper<{}, IAppState>;
 
   it('initializes state with current device orientation', () => {
-    wrapper = shallow(<App />);
+    app = shallow(<App />);
 
-    expect(wrapper.state('orientation')).toBe(DeviceOrientation.Landscape);
+    expect(app.state('orientation')).toBe(DeviceOrientation.Landscape);
   });
 
   describe('#handleOrientationChange', () => {
     it('updates state when device orientation changes', done => {
       const newOrientation = DeviceOrientation.Portrait;
 
-      wrapper = shallow(<App />);
+      app = shallow(<App />);
 
-      wrapper.instance().handleOrientationChange(newOrientation);
+      app.instance().handleOrientationChange(newOrientation);
 
       requestAnimationFrame(() => {
-        expect(wrapper.state('orientation')).toBe(newOrientation);
+        expect(app.state('orientation')).toBe(newOrientation);
         done();
       })
     });
@@ -29,10 +29,10 @@ describe('App', () => {
 
   describe('#render', () => {
     it('renders the network background and site content', () => {
-      wrapper = shallow(<App />);
+      app = shallow(<App />);
 
-      expect(wrapper.find(Network).exists()).toBe(true);
-      expect(wrapper.find(About).exists()).toBe(true);
+      expect(app.find(Network).exists()).toBe(true);
+      expect(app.find(About).exists()).toBe(true);
     });
   });
 });
