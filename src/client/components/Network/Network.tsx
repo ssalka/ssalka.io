@@ -1,3 +1,4 @@
+import device from 'current-device';
 import _ from 'lodash/fp';
 import React, { HTMLProps, SFC } from 'react';
 import Particles from 'react-particles-js';
@@ -11,7 +12,9 @@ const style = {
 };
 
 function getParticleCount(): number {
-  return window.innerWidth * window.innerHeight / 25000;
+  const maxCount = device.tablet() ? 20 : 50;
+
+  return _.clamp(15, maxCount)(window.innerWidth * window.innerHeight / 25000);
 }
 
 const params = _.merge(config, {
