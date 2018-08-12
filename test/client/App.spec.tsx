@@ -23,7 +23,7 @@ describe('App', () => {
       requestAnimationFrame(() => {
         expect(app.state('orientation')).toBe(newOrientation);
         done();
-      })
+      });
     });
   });
 

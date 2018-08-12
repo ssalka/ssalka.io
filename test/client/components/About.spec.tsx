@@ -61,8 +61,6 @@ describe('About', () => {
       });
     });
 
-
-
     describe('once content is loaded', () => {
       it('renders about info from request', done => {
         about = shallow(<About />);
