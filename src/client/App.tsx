@@ -1,3 +1,4 @@
+import bind from 'bind-decorator';
 import device from 'current-device';
 import _ from 'lodash/fp';
 import React, { Component, Fragment } from 'react';
@@ -33,6 +34,7 @@ class App extends Component<{}, IAppState> {
     device.onChangeOrientation(this.handleOrientationChange);
   }
 
+  @bind
   handleOrientationChange(orientation: DeviceOrientation) {
     if (orientation !== this.state.orientation) {
       requestAnimationFrame(() =>  this.setState({ orientation }));
