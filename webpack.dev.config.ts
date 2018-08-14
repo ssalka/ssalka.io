@@ -1,10 +1,10 @@
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 
 import { webpackPort } from 'src/server/config';
 import config from './webpack.config';
 
-const devConfig = {
+const devConfig: Configuration = {
   ...config,
   mode: 'development',
   devtool: 'source-map'
