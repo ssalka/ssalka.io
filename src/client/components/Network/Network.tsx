@@ -11,16 +11,14 @@ const style = {
   background: `linear-gradient(to bottom right, #124, ${indigo[900]}, #06245e)`
 };
 
-function getParticleCount(): number {
-  const maxCount = device.tablet() ? 20 : 50;
-
-  return _.clamp(15, maxCount)(window.innerWidth * window.innerHeight / 25000);
-}
+const DENSITY_DIVISOR = device.mobile() ? 100 : 200;
 
 const params = _.merge(config, {
   particles: {
     number: {
-      value: getParticleCount()
+      density: {
+        value_area: window.innerHeight * window.innerWidth / DENSITY_DIVISOR
+      }
     }
   }
 });

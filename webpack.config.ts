@@ -1,16 +1,12 @@
 import path from 'path';
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { webpackPort } from 'src/server/config';
 
 const ROOT = path.resolve(__dirname);
 const DIST = path.resolve('./dist');
 const CLIENT = path.resolve('./src/client');
 
-const config = {
-  mode: 'development',
-  devtool: 'source-map',
+const config: Configuration = {
   context: ROOT,
   entry: ['./src/client/index.tsx'],
   output: {
@@ -24,8 +20,7 @@ const config = {
       include: CLIENT,
       loader: 'ts-loader',
       options: {
-        configFile: path.resolve('./config/tsconfig.client.json'),
-        transpileOnly: true
+        configFile: path.resolve('./config/tsconfig.client.json')
       }
     }, {
       test: /\.scss$/,
@@ -52,27 +47,5 @@ const config = {
     ])
   ]
 };
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
-  );
-} else if (process.env.NODE_ENV !== 'test') {
-  config.entry.unshift(
-    `webpack-dev-server/client?http://localhost:${webpackPort}/`,
-    'webpack/hot/dev-server'
-  );
-
-  config.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: './config/tsconfig.client.json',
-      tslint: './config/tslint.json'
-    })
-  );
-}
 
 export default config;

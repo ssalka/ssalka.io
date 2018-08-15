@@ -13,6 +13,7 @@
     "npm": "^5.5.1"
   },
   "scripts": {
+    "build": "tsc --lib es7 --esModuleInterop --skipLibCheck webpack.prod.config.ts && NODE_ENV=production webpack --config webpack.prod.config.js",
     "dev": "NODE_PATH=. nodemon --config config/nodemon.json",
     "lint": "tslint -c config/tslint.json -t stylish",
     "lint:all": "npm run lint -- 'src/**/*.ts{,x}' 'test/**/*.ts{,x}'",
@@ -43,6 +44,7 @@
     "@types/node": "^10.5.6",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
+    "@types/webpack": "^4.4.9",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "enzyme": "^3.4.1",
@@ -62,7 +64,9 @@
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   }
 }
