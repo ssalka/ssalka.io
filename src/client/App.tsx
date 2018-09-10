@@ -35,8 +35,16 @@ class App extends Component<{}, IAppState> {
   }
 
   @bind
-  handleOrientationChange(orientation: DeviceOrientation) {
+  handleOrientationChange() {
+    const orientation = (window.orientation as number) % 180
+      ? DeviceOrientation.Landscape
+      : DeviceOrientation.Portrait;
+
     if (orientation !== this.state.orientation) {
+      // current-device library typically does this, but fails on iOS devices
+      document.querySelector('html').classList.add(orientation);
+      document.querySelector('html').classList.remove(this.state.orientation);
+
       requestAnimationFrame(() =>  this.setState({ orientation }));
     }
   }
