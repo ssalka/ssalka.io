@@ -1,9 +1,14 @@
 html, body {
   overflow: hidden;
+  --max-height: 100vh;
+
+  .ios & {
+    --max-height: calc(100vh + 1px);
+  }
 }
 
 #app {
-  height: 100vh;
+  height: env(--max-height);
   display: grid;
 
   .background, main {
@@ -12,7 +17,7 @@ html, body {
   }
 
   .background {
-    max-height: 100vh;
+    max-height: env(--max-height);
     z-index: 0;
   }
 
