@@ -8,8 +8,7 @@ html, body {
 }
 
 #app {
-  height: 100vh;
-  height: env(--max-height);
+  height: var(--max-height);
   display: grid;
 
   .background, main {
@@ -18,8 +17,7 @@ html, body {
   }
 
   .background {
-    max-height: 100vh;
-    max-height: env(--max-height);
+    max-height: var(--max-height);
     z-index: 0;
   }
 
