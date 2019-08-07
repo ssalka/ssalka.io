@@ -1,4 +1,3 @@
-import device from 'current-device';
 import _ from 'lodash/fp';
 import React, { HTMLProps, SFC } from 'react';
 import Particles from 'react-particles-js';
@@ -11,14 +10,15 @@ const style = {
   background: `linear-gradient(to bottom right, #124, ${indigo[900]}, #06245e)`
 };
 
-const DENSITY_DIVISOR = device.mobile() ? 100 : 200;
+const constrainValue = _.flow(_.clamp(20, 75), _.floor);
 
 const params = _.merge(config, {
   particles: {
     number: {
-      density: {
-        value_area: window.innerHeight * window.innerWidth / DENSITY_DIVISOR
-      }
+      value: constrainValue(
+        window.innerHeight * window.innerWidth /
+        (9000 * window.devicePixelRatio ** 3)
+      )
     }
   }
 });
