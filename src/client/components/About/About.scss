@@ -8,6 +8,7 @@ $avatar-max-size: 250px;
   max-width: $avatar-max-size;
   border-radius: 50%;
   overflow: hidden;
+  user-select: none;
 
   img {
     height: 100%;
